@@ -34,7 +34,7 @@ MAKEINDEX=makeindex
 
 # --- Below this line on your own risk! ---
 
-all:	aldoc.cls aldoc.pdf extract aldoc2html
+all:	aldoc.cls aldoc.pdf extract aldoc2html example
 
 extract:	extract.c flags.o
 	$(CC) -o extract extract.c flags.o
@@ -54,5 +54,11 @@ aldoc.pdf:	aldoc.dtx
 aldoc.cls:	aldoc.dtx
 	$(LATEX) aldoc.ins
 
+example:	extract aldoc.cls
+	./extract -m ALDOC -o example/example.tex example/example.as
+	$(LATEX) -output-directory example manual.tex
+	$(LATEX) -output-directory example manual.tex
+
 clean:
-	${RM} *.aux *.cls *.dvi *.glo *.gls *.idx *.ilg *.ind *.log *.ps *.pdf *.o *~ extract aldoc2html
+	${RM} *.aux *.cls *.dvi *.glo *.gls *.idx *.ilg *.ind *.log *.ps *.pdf *.out *.o *~ extract aldoc2html
+	${RM} example/*.log example/*.aux example/*.idx example/*.out example/*.pdf example/example.tex
