@@ -1,0 +1,19 @@
+This directory contains a very simple example of how to use
+aldoc for documenting aldor libraries.
+
+1.) Build aldoc with the Makefile by running:
+
+    make
+
+2.) Copy the two files "aldoc.cls" and "ttyverb.sty" to this directory
+    or anywhere where latex can find them.
+
+3.) Run the "extract" utility:
+
+    extract -m ALDOC example.as
+
+4.) Run the latex compiler:
+
+    pdflatex manual.tex
+
+This is all, the manual is now in "manual.pdf".
